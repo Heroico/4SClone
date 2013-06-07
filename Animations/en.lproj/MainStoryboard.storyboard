@@ -24,7 +24,6 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" type="user" id="995-0L-H0y"/>
-                                    <constraint firstAttribute="height" constant="340" type="user" id="pFx-Sn-Rok"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="CellIdentifier" textLabel="Meh-Rs-x8J" detailTextLabel="Sar-QJ-tbJ" style="IBUITableViewCellStyleSubtitle" id="X85-4Z-BNZ">
@@ -57,7 +56,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0T6-wT-c03">
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="67" id="Thh-lJ-A5F"/>
+                                    <constraint firstAttribute="height" constant="40" type="user" id="Thh-lJ-A5F"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Button">
@@ -72,13 +71,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mWE-V6-4rd" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="46S-IY-sPs"/>
-                            <constraint firstItem="0T6-wT-c03" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Fbn-Dt-GQd"/>
+                            <constraint firstItem="0T6-wT-c03" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="60" type="user" id="Fbn-Dt-GQd"/>
                             <constraint firstItem="mWE-V6-4rd" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="HIi-sN-LFL"/>
                             <constraint firstItem="0T6-wT-c03" firstAttribute="top" secondItem="3" secondAttribute="top" constant="480" type="user" id="JRD-dn-MXh"/>
                             <constraint firstItem="mWE-V6-4rd" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Kxz-oa-vo8"/>
+                            <constraint firstAttribute="bottom" secondItem="jhY-40-4Oq" secondAttribute="bottom" type="user" id="PPC-kh-ltR"/>
                             <constraint firstItem="jhY-40-4Oq" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="user" id="TsX-FO-0oh"/>
                             <constraint firstItem="jhY-40-4Oq" firstAttribute="top" secondItem="3" secondAttribute="top" constant="140" type="user" id="gks-qg-Ab2"/>
-                            <constraint firstItem="0T6-wT-c03" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="r4k-tp-Sgw"/>
+                            <constraint firstItem="0T6-wT-c03" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="-60" type="user" id="r4k-tp-Sgw"/>
                         </constraints>
                     </view>
                     <connections>
