@@ -16,6 +16,7 @@
 @property (nonatomic,strong) NSMutableArray * items;
 @property (nonatomic,assign) NSInteger generatedItems;
 @property (nonatomic,strong) CLLocationManager * locationManager;
+@property (nonatomic,assign) BOOL mapModeOn;
 @end
 
 @implementation ViewController
@@ -42,6 +43,7 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self setMapMode:NO];
     if (!self.locationManager ) {
         self.locationManager = [[CLLocationManager alloc] init];
     }
@@ -53,7 +55,7 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     double delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self updateHeaderMap];
+        [self updateHeaderMap:NO];
     });
 
 }
@@ -64,13 +66,32 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self updateHeaderMap];
+    [self updateHeaderMap:NO];
 }
 
-- (void)updateHeaderMap {
+- (void)updateHeaderMap:(BOOL) animated {
     CGPoint userCoordinateInView = CGPointZero;
     userCoordinateInView.y += self.headerView.frame.size.height*0.5+0.5*fabs(self.tableView.frame.origin.y) + self.tableView.contentOffset.y*0.5;
-    [self.headerView setUserLocationViewCoordinate:userCoordinateInView];
+    [self.headerView setUserLocationViewCoordinate:userCoordinateInView animated:animated];
+}
+
+- (void)setMapMode:(BOOL)mapMode {
+    self.mapModeOn = mapMode;
+    self.headerView.mapView.zoomEnabled = self.mapModeOn;
+    self.headerView.mapView.scrollEnabled = self.mapModeOn;
+    
+    self.theButton.userInteractionEnabled = NO;
+    self.theButton.hidden = self.mapModeOn;
+    
+    self.navigationItem.rightBarButtonItem.enabled = self.mapModeOn;
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        CGRect newFrame = self.tableView.frame;
+        newFrame.origin.y = self.mapModeOn ? -108 : -468;
+        self.tableView.frame = newFrame;
+    } completion:^(BOOL finished) {
+        [self updateHeaderMap:YES];
+    }];
 }
 
 #pragma mark - private methods
@@ -118,7 +139,7 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 #pragma mark - CLLocationManager methods
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation * location = [locations lastObject];
-    [self.headerView setUserLocation:location];
+    [self.headerView setUserLocation:location animated:NO];
 }
 
 #pragma mark - TableView methods
@@ -139,4 +160,12 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     return cell;
 }
 
+- (IBAction)closeMapView:(UIBarButtonItem *)sender {
+    [self setMapMode:NO];
+}
+
+- (IBAction)enableMapMode:(id)sender {
+    if ( !self.mapModeOn )
+        [self setMapMode:YES];
+}
 @end

@@ -24,26 +24,17 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    [super drawRect:rect];
-    NSLog(@"Header: %@",NSStringFromCGRect(rect));
-}*/
-
-- (void)setUserLocation:(CLLocation *)location {
+- (void)setUserLocation:(CLLocation *)location animated:(BOOL)animated {
     self.location = location;
-    [self updateMapRegion];
+    [self updateMapRegion:animated];
 }
 
-- (void)setUserLocationViewCoordinate:(CGPoint)offset {
+- (void)setUserLocationViewCoordinate:(CGPoint)offset animated:(BOOL)animated {
     self.offset = offset;
-    [self updateMapRegion];
+    [self updateMapRegion:animated];
 }
 
-- (void)updateMapRegion {
+- (void)updateMapRegion:(BOOL)animated {
     if ( !self.location )
         return;
     
@@ -53,6 +44,12 @@
 
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.location.coordinate, 500*viewFraction, 500);
     region.center.latitude = region.center.latitude + region.span.latitudeDelta*(fraction - 0.5);
-    [self.mapView setRegion:region animated:NO];
+    [self.mapView setRegion:region animated:animated];
+    NSLog(@"%d",animated);
+}
+
+#pragma mark - map delegate
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    NSLog(@"Animated: %d",animated);
 }
 @end

@@ -11,6 +11,12 @@
 @class HeaderView;
 
 @interface ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
 @property(nonatomic,strong) IBOutlet UITableView * tableView;
 @property (weak, nonatomic) IBOutlet HeaderView *headerView;
+@property (weak, nonatomic) IBOutlet UIButton *theButton;
+
+- (IBAction)closeMapView:(UIBarButtonItem *)sender;
+- (IBAction)enableMapMode:(id)sender;
+
 @end

@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@interface HeaderView : UIView
+@interface HeaderView : UIView<MKMapViewDelegate>
 @property(nonatomic,strong)IBOutlet MKMapView * mapView;
-- (void)setUserLocation:(CLLocation*)location;
-- (void)setUserLocationViewCoordinate:(CGPoint)offset;
+- (void)setUserLocation:(CLLocation*)location animated:(BOOL)animated;
+- (void)setUserLocationViewCoordinate:(CGPoint)offset animated:(BOOL)animated;
 @end
