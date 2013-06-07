@@ -15,17 +15,29 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="jhY-40-4Oq">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="1036" id="6n7-CG-ykf"/>
                                     <constraint firstAttribute="width" constant="320" type="user" id="995-0L-H0y"/>
-                                    <constraint firstAttribute="height" constant="1096" id="MyY-lL-qn3"/>
                                 </constraints>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="8Z2-wW-T4A" customClass="HeaderView">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mtm-oc-cHJ"/>
+                                    </subviews>
                                     <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="mtm-oc-cHJ" firstAttribute="top" secondItem="8Z2-wW-T4A" secondAttribute="top" type="default" id="8xG-0i-MWS"/>
+                                        <constraint firstItem="mtm-oc-cHJ" firstAttribute="bottom" secondItem="8Z2-wW-T4A" secondAttribute="bottom" type="default" id="FTZ-V3-k6J"/>
+                                        <constraint firstItem="mtm-oc-cHJ" firstAttribute="trailing" secondItem="8Z2-wW-T4A" secondAttribute="trailing" type="default" id="Lqn-yY-RaO"/>
+                                        <constraint firstItem="mtm-oc-cHJ" firstAttribute="leading" secondItem="8Z2-wW-T4A" secondAttribute="leading" type="default" id="y2p-eC-hut"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="mapView" destination="mtm-oc-cHJ" id="2Mm-6r-1MI"/>
+                                    </connections>
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="CellIdentifier" textLabel="Meh-Rs-x8J" detailTextLabel="Sar-QJ-tbJ" style="IBUITableViewCellStyleSubtitle" id="X85-4Z-BNZ">
-                                        <rect key="frame" x="0.0" y="570" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="590" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -68,10 +80,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="jhY-40-4Oq" firstAttribute="top" secondItem="3" secondAttribute="top" constant="-468" id="0qy-ln-Pci"/>
                             <constraint firstItem="0T6-wT-c03" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="60" type="user" id="Fbn-Dt-GQd"/>
-                            <constraint firstItem="0T6-wT-c03" firstAttribute="top" secondItem="3" secondAttribute="top" constant="480" type="user" id="JRD-dn-MXh"/>
-                            <constraint firstItem="jhY-40-4Oq" firstAttribute="top" secondItem="3" secondAttribute="top" constant="-498" id="NNl-2V-t1j"/>
                             <constraint firstItem="jhY-40-4Oq" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="user" id="TsX-FO-0oh"/>
+                            <constraint firstAttribute="bottom" secondItem="0T6-wT-c03" secondAttribute="bottom" constant="28" type="user" id="jWi-jz-bOr"/>
                             <constraint firstItem="0T6-wT-c03" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="-60" type="user" id="r4k-tp-Sgw"/>
                         </constraints>
                     </view>
@@ -88,6 +100,9 @@
     <classes>
         <class className="HeaderView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/HeaderView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
@@ -96,7 +111,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="headerView" candidateClass="HeaderView"/>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
             </relationships>
         </class>

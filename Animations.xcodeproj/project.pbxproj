@@ -10,6 +10,7 @@
 		3822A223176214850058DF10 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3822A222176214850058DF10 /* MapKit.framework */; };
 		3822A22617621D100058DF10 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 3822A22517621D100058DF10 /* Item.m */; };
 		3822A22917622CAD0058DF10 /* HeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3822A22817622CAD0058DF10 /* HeaderView.m */; };
+		3822A22B176236A00058DF10 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3822A22A176236A00058DF10 /* CoreLocation.framework */; };
 		38AD834C17620C3E00D10BEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AD834B17620C3E00D10BEF /* UIKit.framework */; };
 		38AD834E17620C3E00D10BEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AD834D17620C3E00D10BEF /* Foundation.framework */; };
 		38AD835017620C3E00D10BEF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AD834F17620C3E00D10BEF /* CoreGraphics.framework */; };
@@ -45,6 +46,7 @@
 		3822A22517621D100058DF10 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		3822A22717622CAD0058DF10 /* HeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeaderView.h; sourceTree = "<group>"; };
 		3822A22817622CAD0058DF10 /* HeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeaderView.m; sourceTree = "<group>"; };
+		3822A22A176236A00058DF10 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		38AD834817620C3E00D10BEF /* Animations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38AD834B17620C3E00D10BEF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		38AD834D17620C3E00D10BEF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -76,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3822A22B176236A00058DF10 /* CoreLocation.framework in Frameworks */,
 				3822A223176214850058DF10 /* MapKit.framework in Frameworks */,
 				38AD834C17620C3E00D10BEF /* UIKit.framework in Frameworks */,
 				38AD834E17620C3E00D10BEF /* Foundation.framework in Frameworks */,
@@ -100,6 +103,7 @@
 		38AD833F17620C3E00D10BEF = {
 			isa = PBXGroup;
 			children = (
+				3822A22A176236A00058DF10 /* CoreLocation.framework */,
 				3822A222176214850058DF10 /* MapKit.framework */,
 				38AD835117620C3E00D10BEF /* Animations */,
 				38AD837517620C3E00D10BEF /* AnimationsTests */,
@@ -138,11 +142,11 @@
 				38AD836317620C3E00D10BEF /* MainStoryboard.storyboard */,
 				38AD836617620C3E00D10BEF /* ViewController.h */,
 				38AD836717620C3E00D10BEF /* ViewController.m */,
+				3822A22717622CAD0058DF10 /* HeaderView.h */,
+				3822A22817622CAD0058DF10 /* HeaderView.m */,
 				3822A22417621D100058DF10 /* Item.h */,
 				3822A22517621D100058DF10 /* Item.m */,
 				38AD835217620C3E00D10BEF /* Supporting Files */,
-				3822A22717622CAD0058DF10 /* HeaderView.h */,
-				3822A22817622CAD0058DF10 /* HeaderView.m */,
 			);
 			path = Animations;
 			sourceTree = "<group>";

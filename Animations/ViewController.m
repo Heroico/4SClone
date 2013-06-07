@@ -10,10 +10,12 @@
 #import "Item.h"
 #import "HeaderView.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface ViewController ()
+@interface ViewController ()<CLLocationManagerDelegate>
 @property (nonatomic,strong) NSMutableArray * items;
 @property (nonatomic,assign) NSInteger generatedItems;
+@property (nonatomic,strong) CLLocationManager * locationManager;
 @end
 
 @implementation ViewController
@@ -38,9 +40,29 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     }];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    //self.tableView.contentOffset = CGPointMake(0, 50);
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    if (!self.locationManager ) {
+        self.locationManager = [[CLLocationManager alloc] init];
+    }
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager startUpdatingLocation];
+    
+    
+    double delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        CGPoint userCoordinateInView = CGPointZero;
+        userCoordinateInView.y += self.headerView.frame.size.height*0.5+0.5*fabs(self.tableView.frame.origin.y);
+        [self.headerView setUserLocationViewCoordinate:userCoordinateInView];
+    });
+
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.locationManager = nil;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -92,6 +114,12 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
         [randomItems addObject:item];
     }
     return randomItems;
+}
+
+#pragma mark - CLLocationManager methods
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation * location = [locations lastObject];
+    [self.headerView setUserLocation:location];
 }
 
 #pragma mark - TableView methods

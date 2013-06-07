@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface HeaderView : UIView
-
+@property(nonatomic,strong)IBOutlet MKMapView * mapView;
+- (void)setUserLocation:(CLLocation*)location;
+- (void)setUserLocationViewCoordinate:(CGPoint)offset;
 @end
