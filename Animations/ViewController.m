@@ -9,21 +9,28 @@
 #import "ViewController.h"
 
 @interface ViewController ()
-
+@property (nonatomic,strong) NSMutableArray * items;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    self.items = [NSMutableArray array];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.items.count;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
 
 @end
