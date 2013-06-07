@@ -53,9 +53,7 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     double delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        CGPoint userCoordinateInView = CGPointZero;
-        userCoordinateInView.y += self.headerView.frame.size.height*0.5+0.5*fabs(self.tableView.frame.origin.y);
-        [self.headerView setUserLocationViewCoordinate:userCoordinateInView];
+        [self updateHeaderMap];
     });
 
 }
@@ -66,12 +64,13 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-/*    NSLog(@"%f",scrollView.contentOffset.y);
-    CGRect frame = self.headerView.frame;
-    NSLog(@"A view: %@",NSStringFromCGRect(frame));
-    frame.origin.y = scrollView.contentOffset.y;
-    frame.size.height = 100-scrollView.contentOffset.y;
-    self.headerView.frame = frame;*/
+    [self updateHeaderMap];
+}
+
+- (void)updateHeaderMap {
+    CGPoint userCoordinateInView = CGPointZero;
+    userCoordinateInView.y += self.headerView.frame.size.height*0.5+0.5*fabs(self.tableView.frame.origin.y) + self.tableView.contentOffset.y*0.5;
+    [self.headerView setUserLocationViewCoordinate:userCoordinateInView];
 }
 
 #pragma mark - private methods
