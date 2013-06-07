@@ -71,12 +71,13 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 
 - (void)updateHeaderMap:(BOOL) animated {
     CGPoint userCoordinateInView = CGPointZero;
-    userCoordinateInView.y += self.headerView.frame.size.height*0.5+0.5*fabs(self.tableView.frame.origin.y) + self.tableView.contentOffset.y*0.5;
+    userCoordinateInView.y += round(self.headerView.frame.size.height*0.5+0.5*fabs(self.tableView.frame.origin.y) + self.tableView.contentOffset.y*0.5);
     [self.headerView setUserLocationViewCoordinate:userCoordinateInView animated:animated];
 }
 
 - (void)setMapMode:(BOOL)mapMode {
     self.mapModeOn = mapMode;
+    self.headerView.mapView.userInteractionEnabled = self.mapModeOn;
     self.headerView.mapView.zoomEnabled = self.mapModeOn;
     self.headerView.mapView.scrollEnabled = self.mapModeOn;
     
@@ -90,7 +91,8 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
         newFrame.origin.y = self.mapModeOn ? -108 : -468;
         self.tableView.frame = newFrame;
     } completion:^(BOOL finished) {
-        [self updateHeaderMap:YES];
+        if ( finished )
+            [self updateHeaderMap:YES];
     }];
 }
 

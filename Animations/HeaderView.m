@@ -40,16 +40,15 @@
     
     CGSize size = self.frame.size;
     CGFloat fraction = (self.offset.y-self.frame.origin.y)/size.height;
-    CGFloat viewFraction = self.frame.size.height/self.frame.size.width;
+    double viewFraction = self.frame.size.height/self.frame.size.width;
 
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.location.coordinate, 500*viewFraction, 500);
     region.center.latitude = region.center.latitude + region.span.latitudeDelta*(fraction - 0.5);
     [self.mapView setRegion:region animated:animated];
-    NSLog(@"%d",animated);
+    NSLog(@"location (%f,%f)", region.center.latitude,region.center.longitude);
 }
 
 #pragma mark - map delegate
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-    NSLog(@"Animated: %d",animated);
 }
 @end
