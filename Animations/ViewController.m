@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "Item.h"
+#import "HeaderView.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
 
 @interface ViewController ()
@@ -26,8 +27,8 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     
     for ( NSInteger i=0; i<10; i++ ) {
         Item * item = [[Item alloc] init];
-        item.title = [NSString stringWithFormat:@"Item %d",rand()];
-        item.subtitle = i%2 ? @"Something" : @"Or not";
+        item.subtitle = [NSString stringWithFormat:@"Item %d",rand()];
+        item.title = [NSString stringWithFormat:@"Item %d",i];
         [self.items addObject:item];
     }
     
@@ -35,6 +36,20 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [weakSelf infiniteScrolling];
     }];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    //self.tableView.contentOffset = CGPointMake(0, 50);
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+/*    NSLog(@"%f",scrollView.contentOffset.y);
+    CGRect frame = self.headerView.frame;
+    NSLog(@"A view: %@",NSStringFromCGRect(frame));
+    frame.origin.y = scrollView.contentOffset.y;
+    frame.size.height = 100-scrollView.contentOffset.y;
+    self.headerView.frame = frame;*/
 }
 
 #pragma mark - private methods
@@ -67,7 +82,7 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 }
 
 - (NSMutableArray*) randomItems {
-    NSInteger count = rand()%2+1;
+    NSInteger count = rand()%4+1;
     NSMutableArray * randomItems = [[NSMutableArray alloc] initWithCapacity:count];
     for ( NSInteger i=0; i<count; i++ ) {
         Item * item = [[Item alloc] init];
