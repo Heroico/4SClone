@@ -10,6 +10,6 @@
 #import <MapKit/MapKit.h>
 
 @interface ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,MKMapViewDelegate>
-@property(nonatomic,strong) IBOutlet UITableView * tableview;
-@property(nonatomic,strong) IBOutlet MKMapView   * mapview;
+@property(nonatomic,strong) IBOutlet UITableView * tableView;
+@property(nonatomic,strong) IBOutlet MKMapView   * mapView;
 @end

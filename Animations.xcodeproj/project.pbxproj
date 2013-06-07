@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3822A223176214850058DF10 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3822A222176214850058DF10 /* MapKit.framework */; };
+		3822A22617621D100058DF10 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 3822A22517621D100058DF10 /* Item.m */; };
 		38AD834C17620C3E00D10BEF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AD834B17620C3E00D10BEF /* UIKit.framework */; };
 		38AD834E17620C3E00D10BEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AD834D17620C3E00D10BEF /* Foundation.framework */; };
 		38AD835017620C3E00D10BEF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AD834F17620C3E00D10BEF /* CoreGraphics.framework */; };
@@ -39,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		3822A222176214850058DF10 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3822A22417621D100058DF10 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		3822A22517621D100058DF10 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		38AD834817620C3E00D10BEF /* Animations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Animations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38AD834B17620C3E00D10BEF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		38AD834D17620C3E00D10BEF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -132,6 +135,8 @@
 				38AD836317620C3E00D10BEF /* MainStoryboard.storyboard */,
 				38AD836617620C3E00D10BEF /* ViewController.h */,
 				38AD836717620C3E00D10BEF /* ViewController.m */,
+				3822A22417621D100058DF10 /* Item.h */,
+				3822A22517621D100058DF10 /* Item.m */,
 				38AD835217620C3E00D10BEF /* Supporting Files */,
 			);
 			path = Animations;
@@ -313,6 +318,7 @@
 				38AD835817620C3E00D10BEF /* main.m in Sources */,
 				38AD835C17620C3E00D10BEF /* AppDelegate.m in Sources */,
 				38AD836817620C3E00D10BEF /* ViewController.m in Sources */,
+				3822A22617621D100058DF10 /* Item.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
