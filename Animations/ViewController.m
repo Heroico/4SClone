@@ -66,7 +66,8 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self updateHeaderMap:NO];
+    //We must queue them or something
+    //[self updateHeaderMap:NO];
 }
 
 - (void)updateHeaderMap:(BOOL) animated {
