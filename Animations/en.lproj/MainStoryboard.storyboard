@@ -86,7 +86,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jhY-40-4Oq" firstAttribute="top" secondItem="3" secondAttribute="top" constant="-468" id="0qy-ln-Pci"/>
+                            <constraint firstItem="jhY-40-4Oq" firstAttribute="top" secondItem="3" secondAttribute="top" constant="-468" type="user" id="0qy-ln-Pci"/>
                             <constraint firstItem="0T6-wT-c03" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="60" type="user" id="Fbn-Dt-GQd"/>
                             <constraint firstItem="jhY-40-4Oq" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="user" id="TsX-FO-0oh"/>
                             <constraint firstAttribute="bottom" secondItem="0T6-wT-c03" secondAttribute="bottom" constant="28" type="user" id="jWi-jz-bOr"/>
@@ -103,6 +103,7 @@
                     <connections>
                         <outlet property="headerView" destination="8Z2-wW-T4A" id="QRN-Nw-e8H"/>
                         <outlet property="tableView" destination="jhY-40-4Oq" id="yfl-Bs-TK0"/>
+                        <outlet property="tableViewTopConstraint" destination="0qy-ln-Pci" id="37o-LR-lCo"/>
                         <outlet property="theButton" destination="0T6-wT-c03" id="nva-0u-4WD"/>
                         <outlet property="view" destination="3" id="qa9-Ks-VL7"/>
                     </connections>

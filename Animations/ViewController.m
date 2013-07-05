@@ -86,11 +86,13 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     self.theButton.hidden = self.mapModeOn;
     
     self.navigationItem.rightBarButtonItem.enabled = self.mapModeOn;
-    
+
     [UIView animateWithDuration:0.5 animations:^{
-        CGRect newFrame = self.tableView.frame;
-        newFrame.origin.y = self.mapModeOn ? -108 : -468;
-        self.tableView.frame = newFrame;
+        CGFloat multiplier = self.mapModeOn ? -0.2 : -0.8;
+        CGFloat height = self.view.frame.size.height*multiplier;
+        self.tableViewTopConstraint.constant = height;
+        [self.view layoutIfNeeded];
+
     } completion:^(BOOL finished) {
         if ( finished )
             [self updateHeaderMap:YES];

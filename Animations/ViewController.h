@@ -15,6 +15,7 @@
 @property(nonatomic,strong) IBOutlet UITableView * tableView;
 @property (weak, nonatomic) IBOutlet HeaderView *headerView;
 @property (weak, nonatomic) IBOutlet UIButton *theButton;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
 
 - (IBAction)closeMapView:(UIBarButtonItem *)sender;
 - (IBAction)enableMapMode:(id)sender;
