@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet HeaderView *headerView;
 @property (weak, nonatomic) IBOutlet UIButton *theButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerViewHeightConstraint;
 
 - (IBAction)closeMapView:(UIBarButtonItem *)sender;
 - (IBAction)enableMapMode:(id)sender;

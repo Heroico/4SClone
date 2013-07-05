@@ -88,9 +88,10 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     self.navigationItem.rightBarButtonItem.enabled = self.mapModeOn;
 
     [UIView animateWithDuration:0.5 animations:^{
-        CGFloat multiplier = self.mapModeOn ? -0.2 : -0.8;
+        CGFloat multiplier = self.mapModeOn ? 0.8 : 0.3;
         CGFloat height = self.view.frame.size.height*multiplier;
         self.tableViewTopConstraint.constant = height;
+        self.headerViewHeightConstraint.constant = height;
         [self.view layoutIfNeeded];
 
     } completion:^(BOOL finished) {

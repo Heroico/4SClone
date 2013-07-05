@@ -93,7 +93,9 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="headerView" destination="PQN-uv-25W" id="SOb-gG-t45"/>
+                        <outlet property="headerViewHeightConstraint" destination="JJL-i6-kkS" id="rFt-Mx-waQ"/>
                         <outlet property="tableView" destination="5DK-hS-d2N" id="eUl-fX-z5L"/>
+                        <outlet property="tableViewTopConstraint" destination="V0p-ko-fpB" id="gfO-4I-jWW"/>
                         <outlet property="theButton" destination="0T6-wT-c03" id="nva-0u-4WD"/>
                         <outlet property="view" destination="3" id="qa9-Ks-VL7"/>
                     </connections>
@@ -126,28 +128,6 @@
             <point key="canvasLocation" x="460" y="62"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="HeaderView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/HeaderView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="closeMapView:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="enableMapMode:"/>
-                <relationship kind="outlet" name="headerView" candidateClass="HeaderView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="tableViewTopConstraint" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="theButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
