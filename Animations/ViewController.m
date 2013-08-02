@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "Item.h"
-#import "HeaderView.h"
+#import "MapHelperView.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import <CoreLocation/CoreLocation.h>
 

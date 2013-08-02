@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Alvaro Barbeira. All rights reserved.
 //
 
-#import "HeaderView.h"
+#import "MapHelperView.h"
 
-@interface HeaderView()
+@interface MapHelperView()
 @property (nonatomic,strong) CLLocation * location;
 @property (nonatomic,assign) CGPoint offset;
 @end
 
-@implementation HeaderView
+@implementation MapHelperView
 
 - (id)initWithFrame:(CGRect)frame
 {

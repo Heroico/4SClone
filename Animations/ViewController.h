@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class HeaderView;
+@class MapHelperView;
 
 @interface ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
 @property(nonatomic,strong) IBOutlet UITableView * tableView;
-@property (weak, nonatomic) IBOutlet HeaderView *headerView;
+@property (weak, nonatomic) IBOutlet MapHelperView *headerView;
 @property (weak, nonatomic) IBOutlet UIButton *theButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerViewHeightConstraint;
