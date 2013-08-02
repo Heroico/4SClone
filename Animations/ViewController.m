@@ -23,9 +23,10 @@
 
 static NSString * const kCellIdentifier = @"CellIdentifier";
 
-static const CGFloat kInitialVisibleMapHeight = 100.0;
+static const CGFloat kInitialVisibleMapHeight = 150.0;
 static const CGFloat kHelpViewInitialTop = -100.0;
 static const CGFloat kTableViewInitialTop = 0;
+static const CGFloat kMapModeCellMargin = 20;
 static const CGFloat kMapModeTop = 0;
 
 - (void)viewDidLoad
@@ -56,6 +57,7 @@ static const CGFloat kMapModeTop = 0;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startUpdatingLocation];
     
+    self.helperViewHeightConstraint.constant = self.view.frame.size.height;
     
     double delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -92,21 +94,38 @@ static const CGFloat kMapModeTop = 0;
     
     self.navigationItem.rightBarButtonItem.enabled = self.mapModeOn;
 
-    [UIView animateWithDuration:0.5 animations:^{
+    // First remove/add header view from table, then animate map movement
+    if (self.mapModeOn) {
+        [self.locationManager stopUpdatingLocation];
+        self.tableView.tableHeaderView = nil;
+        self.tableViewTopConstraint.constant = kInitialVisibleMapHeight;
+    } else {
+        [self.locationManager startUpdatingLocation];
+        CGFloat height = self.view.frame.size.height;
+        self.tableView.tableHeaderView = (UIView *)self.tableHeaderView;
+        self.tableViewTopConstraint.constant = height-kInitialVisibleMapHeight-kMapModeCellMargin;
+    }
+    //[self.view layoutIfNeeded];
+
+    [self updateHeaderMap:YES];
+    [UIView animateWithDuration:0.3 animations:^{
         if (self.mapModeOn) {
             CGFloat height = self.view.frame.size.height;
-            self.tableViewTopConstraint.constant = height-170; //"20" will change soon
-            self.helperViewTopConstraint.constant = 0;
+            self.tableViewTopConstraint.constant = height-kMapModeCellMargin;
+            self.helperViewTopConstraint.constant = -kMapModeCellMargin;
         } else {
             self.tableViewTopConstraint.constant = kTableViewInitialTop;
             self.helperViewTopConstraint.constant = kHelpViewInitialTop;
         }
         self.tableView.scrollEnabled = !self.mapModeOn;
         [self.view layoutIfNeeded];
-
+        
     } completion:^(BOOL finished) {
-        if ( finished )
-            [self updateHeaderMap:YES];
+        if ( finished ) {
+            if( self.mapModeOn) {
+                self.tableView.tableHeaderView = nil;
+            }
+        }
     }];
 }
 
