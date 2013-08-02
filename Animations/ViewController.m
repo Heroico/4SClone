@@ -77,15 +77,15 @@ static const CGFloat kMapModeTop = 0;
 
 - (void)updateHeaderMap:(BOOL) animated {
     CGPoint userCoordinateInView = CGPointZero;
-    userCoordinateInView.y += round(self.headerView.frame.size.height*0.5+0.5*fabs(self.tableView.frame.origin.y) + self.tableView.contentOffset.y*0.5);
-    [self.headerView setUserLocationViewCoordinate:userCoordinateInView animated:animated];
+    userCoordinateInView.y += round(self.mapHelperView.frame.size.height*0.5+0.5*fabs(self.tableView.frame.origin.y) + self.tableView.contentOffset.y*0.5);
+    [self.mapHelperView setUserLocationViewCoordinate:userCoordinateInView animated:animated];
 }
 
 - (void)setMapMode:(BOOL)mapMode {
     self.mapModeOn = mapMode;
-    self.headerView.mapView.userInteractionEnabled = self.mapModeOn;
-    self.headerView.mapView.zoomEnabled = self.mapModeOn;
-    self.headerView.mapView.scrollEnabled = self.mapModeOn;
+    self.mapHelperView.mapView.userInteractionEnabled = self.mapModeOn;
+    self.mapHelperView.mapView.zoomEnabled = self.mapModeOn;
+    self.mapHelperView.mapView.scrollEnabled = self.mapModeOn;
     
     self.theButton.userInteractionEnabled = NO;
     self.theButton.hidden = self.mapModeOn;
@@ -96,7 +96,7 @@ static const CGFloat kMapModeTop = 0;
         if (self.mapModeOn) {
             CGFloat height = self.view.frame.size.height;
             self.tableViewTopConstraint.constant = height-20; //"20" will change soon 
-            self.helperViewHeightConstraint.constant = 0;
+            self.helperViewTopConstraint.constant = 0;
         } else {
             self.tableViewTopConstraint.constant = kTableViewInitialTop;
             self.helperViewTopConstraint.constant = kHelpViewInitialTop;
@@ -155,7 +155,7 @@ static const CGFloat kMapModeTop = 0;
 #pragma mark - CLLocationManager methods
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation * location = [locations lastObject];
-    [self.headerView setUserLocation:location animated:NO];
+    [self.mapHelperView setUserLocation:location animated:NO];
 }
 
 #pragma mark - TableView methods

@@ -32,7 +32,6 @@
                                         <gestureRecognizers/>
                                         <connections>
                                             <outlet property="delegate" destination="PQN-uv-25W" id="auZ-f5-E74"/>
-                                            <outletCollection property="gestureRecognizers" destination="5wX-91-7ED" appends="YES" id="fw5-DY-TaB"/>
                                         </connections>
                                     </mapView>
                                 </subviews>
@@ -57,6 +56,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outlet property="tapGestureRecognizer" destination="vkz-Da-g58" id="X8v-R0-kS9"/>
+                                        <outletCollection property="gestureRecognizers" destination="vkz-Da-g58" appends="YES" id="Mrr-yc-Lga"/>
+                                    </connections>
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="CellIdentifier" id="cag-Xt-m9a">
@@ -100,9 +104,9 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="headerView" destination="PQN-uv-25W" id="SOb-gG-t45"/>
                         <outlet property="helperViewHeightConstraint" destination="W5a-FY-Sh0" id="XQn-2t-8tx"/>
                         <outlet property="helperViewTopConstraint" destination="obc-f7-9pg" id="ZwU-Xj-Mdg"/>
+                        <outlet property="mapHelperView" destination="PQN-uv-25W" id="Mxr-O5-e9z"/>
                         <outlet property="tableView" destination="5DK-hS-d2N" id="eUl-fX-z5L"/>
                         <outlet property="tableViewHeightConstraint" destination="yTh-TG-ijz" id="aY1-BC-MYJ"/>
                         <outlet property="tableViewTopConstraint" destination="V0p-ko-fpB" id="gfO-4I-jWW"/>
@@ -111,9 +115,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer delaysTouchesBegan="YES" id="5wX-91-7ED">
+                <tapGestureRecognizer id="vkz-Da-g58">
                     <connections>
-                        <action selector="enableMapMode:" destination="2" id="Xlw-Je-4nh"/>
+                        <action selector="enableMapMode:" destination="2" id="89P-as-8iG"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -150,6 +154,9 @@
         </class>
         <class className="TableHeaderView" superclassName="UIView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TableHeaderView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tapGestureRecognizer" candidateClass="UIGestureRecognizer"/>
+            </relationships>
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>

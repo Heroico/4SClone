@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TableHeaderView : UIView
-
+@property (weak, nonatomic) IBOutlet UIGestureRecognizer *tapGestureRecognizer;
 @end
