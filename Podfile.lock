@@ -1,0 +1,13 @@
+PODS:
+  - CAAnimationBlocks (0.0.1)
+  - SVPullToRefresh (0.4.1)
+
+DEPENDENCIES:
+  - CAAnimationBlocks
+  - SVPullToRefresh (= 0.4.1)
+
+SPEC CHECKSUMS:
+  CAAnimationBlocks: b70f877c5b92734abef270152187d3287d84e8f8
+  SVPullToRefresh: 61a0e4bd12bd6f8e3465909810b0fbeb1a28d5f2
+
+COCOAPODS: 0.19.1
