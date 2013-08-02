@@ -58,6 +58,7 @@ static const CGFloat kMapModeTop = 0;
     [self.locationManager startUpdatingLocation];
     
     self.helperViewHeightConstraint.constant = self.view.frame.size.height;
+    self.tableViewHeightConstraint.constant = self.view.frame.size.height;
     
     double delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -77,9 +78,9 @@ static const CGFloat kMapModeTop = 0;
     //[self updateHeaderMap:NO];
 }
 
-- (void)updateHeaderMap:(BOOL) animated {
+- (void)updateHeaderMap:(BOOL)animated {
     CGPoint userCoordinateInView = CGPointZero;
-    userCoordinateInView.y += round(self.mapHelperView.frame.size.height*0.5+0.5*fabs(self.tableView.frame.origin.y) + self.tableView.contentOffset.y*0.5);
+    userCoordinateInView.y = round(-self.mapHelperView.frame.origin.y+0.5*self.tableView.frame.origin.y);
     [self.mapHelperView setUserLocationViewCoordinate:userCoordinateInView animated:animated];
 }
 
@@ -105,9 +106,8 @@ static const CGFloat kMapModeTop = 0;
         self.tableView.tableHeaderView = (UIView *)self.tableHeaderView;
         self.tableViewTopConstraint.constant = height-kInitialVisibleMapHeight-kMapModeCellMargin;
     }
-    //[self.view layoutIfNeeded];
+    [self.view layoutIfNeeded];
 
-    [self updateHeaderMap:YES];
     [UIView animateWithDuration:0.3 animations:^{
         if (self.mapModeOn) {
             CGFloat height = self.view.frame.size.height;
@@ -127,6 +127,8 @@ static const CGFloat kMapModeTop = 0;
             }
         }
     }];
+    // no animation has far better performance
+    [self updateHeaderMap:YES];
 }
 
 #pragma mark - private methods
@@ -174,7 +176,7 @@ static const CGFloat kMapModeTop = 0;
 #pragma mark - CLLocationManager methods
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation * location = [locations lastObject];
-    [self.mapHelperView setUserLocation:location animated:NO];
+    [self.mapHelperView setUserLocation:location animated:YES];
 }
 
 #pragma mark - TableView methods
