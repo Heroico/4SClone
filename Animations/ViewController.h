@@ -15,8 +15,12 @@
 @property(nonatomic,strong) IBOutlet UITableView * tableView;
 @property (weak, nonatomic) IBOutlet MapHelperView *headerView;
 @property (weak, nonatomic) IBOutlet UIButton *theButton;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *helperViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *helperViewTopConstraint;
 
 - (IBAction)closeMapView:(UIBarButtonItem *)sender;
 - (IBAction)enableMapMode:(id)sender;

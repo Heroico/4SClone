@@ -23,6 +23,11 @@
 
 static NSString * const kCellIdentifier = @"CellIdentifier";
 
+static const CGFloat kInitialVisibleMapHeight = 100.0;
+static const CGFloat kHelpViewInitialTop = -100.0;
+static const CGFloat kTableViewInitialTop = 0;
+static const CGFloat kMapModeTop = 0;
+
 - (void)viewDidLoad
 {
     self.items = [NSMutableArray array];
@@ -88,10 +93,15 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     self.navigationItem.rightBarButtonItem.enabled = self.mapModeOn;
 
     [UIView animateWithDuration:0.5 animations:^{
-        CGFloat multiplier = self.mapModeOn ? 0.8 : 0.3;
-        CGFloat height = self.view.frame.size.height*multiplier;
-        self.tableViewTopConstraint.constant = height;
-        self.headerViewHeightConstraint.constant = height;
+        if (self.mapModeOn) {
+            CGFloat height = self.view.frame.size.height;
+            self.tableViewTopConstraint.constant = height-20; //"20" will change soon 
+            self.helperViewHeightConstraint.constant = 0;
+        } else {
+            self.tableViewTopConstraint.constant = kTableViewInitialTop;
+            self.helperViewTopConstraint.constant = kHelpViewInitialTop;
+        }
+
         [self.view layoutIfNeeded];
 
     } completion:^(BOOL finished) {
@@ -164,6 +174,10 @@ static NSString * const kCellIdentifier = @"CellIdentifier";
     cell.textLabel.text = item.title;
     cell.detailTextLabel.text = item.subtitle;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
 }
 
 - (IBAction)closeMapView:(UIBarButtonItem *)sender {

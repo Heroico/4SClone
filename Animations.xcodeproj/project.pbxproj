@@ -27,6 +27,7 @@
 		38AD837217620C3E00D10BEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AD834D17620C3E00D10BEF /* Foundation.framework */; };
 		38AD837A17620C3E00D10BEF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38AD837817620C3E00D10BEF /* InfoPlist.strings */; };
 		38AD837D17620C3E00D10BEF /* AnimationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AD837C17620C3E00D10BEF /* AnimationsTests.m */; };
+		38B5805017ABF8ED0022ABD1 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B5804F17ABF8ED0022ABD1 /* TableHeaderView.m */; };
 		BFFDE4715346426F84972C43 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC7E7A5316A24658A368CE32 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,8 @@
 		38AD837917620C3E00D10BEF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		38AD837B17620C3E00D10BEF /* AnimationsTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationsTests.h; sourceTree = "<group>"; };
 		38AD837C17620C3E00D10BEF /* AnimationsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationsTests.m; sourceTree = "<group>"; };
+		38B5804E17ABF8ED0022ABD1 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
+		38B5804F17ABF8ED0022ABD1 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
 		409FC23F672E404DA44C8821 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		CC7E7A5316A24658A368CE32 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -147,6 +150,8 @@
 				3822A22417621D100058DF10 /* Item.h */,
 				3822A22517621D100058DF10 /* Item.m */,
 				38AD835217620C3E00D10BEF /* Supporting Files */,
+				38B5804E17ABF8ED0022ABD1 /* TableHeaderView.h */,
+				38B5804F17ABF8ED0022ABD1 /* TableHeaderView.m */,
 			);
 			path = Animations;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 				38AD836817620C3E00D10BEF /* ViewController.m in Sources */,
 				3822A22617621D100058DF10 /* Item.m in Sources */,
 				3822A22917622CAD0058DF10 /* MapHelperView.m in Sources */,
+				38B5805017ABF8ED0022ABD1 /* TableHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

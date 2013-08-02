@@ -39,8 +39,8 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="MnT-TE-c8x" firstAttribute="bottom" secondItem="PQN-uv-25W" secondAttribute="bottom" type="default" id="Flj-qS-0dR"/>
-                                    <constraint firstAttribute="height" constant="100" type="user" id="JJL-i6-kkS"/>
                                     <constraint firstItem="MnT-TE-c8x" firstAttribute="leading" secondItem="PQN-uv-25W" secondAttribute="leading" type="default" id="Kwj-dF-tgX"/>
+                                    <constraint firstAttribute="height" constant="568" type="user" id="W5a-FY-Sh0"/>
                                     <constraint firstItem="MnT-TE-c8x" firstAttribute="top" secondItem="PQN-uv-25W" secondAttribute="top" type="default" id="ccK-Zx-ZLX"/>
                                     <constraint firstItem="MnT-TE-c8x" firstAttribute="trailing" secondItem="PQN-uv-25W" secondAttribute="trailing" type="default" id="jjW-fW-BPr"/>
                                 </constraints>
@@ -49,16 +49,25 @@
                                 </connections>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5DK-hS-d2N">
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="568" type="user" id="yTh-TG-ijz"/>
+                                </constraints>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="e3k-wW-HcX" customClass="TableHeaderView">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="CellIdentifier" id="cag-Xt-m9a">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="172" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -71,13 +80,12 @@
                         <constraints>
                             <constraint firstItem="5DK-hS-d2N" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="9yh-Uh-jpD"/>
                             <constraint firstItem="0T6-wT-c03" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="60" type="user" id="Fbn-Dt-GQd"/>
-                            <constraint firstItem="5DK-hS-d2N" firstAttribute="top" secondItem="3" secondAttribute="top" constant="100" type="user" id="V0p-ko-fpB"/>
-                            <constraint firstAttribute="bottom" secondItem="5DK-hS-d2N" secondAttribute="bottom" type="user" id="cR4-ZU-cKg"/>
+                            <constraint firstItem="5DK-hS-d2N" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="V0p-ko-fpB"/>
                             <constraint firstItem="PQN-uv-25W" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="cmS-jz-lXU"/>
                             <constraint firstItem="PQN-uv-25W" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="dnz-Xy-hsA"/>
                             <constraint firstAttribute="bottom" secondItem="0T6-wT-c03" secondAttribute="bottom" constant="28" type="user" id="jWi-jz-bOr"/>
                             <constraint firstItem="5DK-hS-d2N" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="lB8-wv-CDS"/>
-                            <constraint firstItem="PQN-uv-25W" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="obc-f7-9pg"/>
+                            <constraint firstItem="PQN-uv-25W" firstAttribute="top" secondItem="3" secondAttribute="top" constant="-200" type="user" id="obc-f7-9pg"/>
                             <constraint firstItem="0T6-wT-c03" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" constant="-60" type="user" id="r4k-tp-Sgw"/>
                         </constraints>
                     </view>
@@ -93,8 +101,10 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="headerView" destination="PQN-uv-25W" id="SOb-gG-t45"/>
-                        <outlet property="headerViewHeightConstraint" destination="JJL-i6-kkS" id="rFt-Mx-waQ"/>
+                        <outlet property="helperViewHeightConstraint" destination="W5a-FY-Sh0" id="XQn-2t-8tx"/>
+                        <outlet property="helperViewTopConstraint" destination="obc-f7-9pg" id="ZwU-Xj-Mdg"/>
                         <outlet property="tableView" destination="5DK-hS-d2N" id="eUl-fX-z5L"/>
+                        <outlet property="tableViewHeightConstraint" destination="yTh-TG-ijz" id="aY1-BC-MYJ"/>
                         <outlet property="tableViewTopConstraint" destination="V0p-ko-fpB" id="gfO-4I-jWW"/>
                         <outlet property="theButton" destination="0T6-wT-c03" id="nva-0u-4WD"/>
                         <outlet property="view" destination="3" id="qa9-Ks-VL7"/>
@@ -128,6 +138,34 @@
             <point key="canvasLocation" x="460" y="62"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="MapHelperView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapHelperView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TableHeaderView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TableHeaderView.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closeMapView:" candidateClass="UIBarButtonItem"/>
+                <relationship kind="action" name="enableMapMode:"/>
+                <relationship kind="outlet" name="headerView" candidateClass="MapHelperView"/>
+                <relationship kind="outlet" name="helperViewHeightConstraint" candidateClass="NSLayoutConstraint"/>
+                <relationship kind="outlet" name="helperViewTopConstraint" candidateClass="NSLayoutConstraint"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="tableViewHeightConstraint" candidateClass="NSLayoutConstraint"/>
+                <relationship kind="outlet" name="tableViewTopConstraint" candidateClass="NSLayoutConstraint"/>
+                <relationship kind="outlet" name="theButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
