@@ -11,10 +11,12 @@
 #import "MapHelperView.h"
 #import "ItemCell.h"
 #import "TopCell.h"
+#import "TableHeaderView.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import <CoreLocation/CoreLocation.h>
 
 @interface ViewController ()<CLLocationManagerDelegate>
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGestureRecognizer; //build it 
 @property (nonatomic,strong) NSMutableArray * items;
 @property (nonatomic,assign) NSInteger generatedItems;
 @property (nonatomic,strong) CLLocationManager * locationManager;
@@ -118,6 +120,7 @@ static const CGFloat kItemCellHeight = 70.0;
     }
     [self.view layoutIfNeeded];
 
+    self.panGestureRecognizer.enabled = self.mapModeOn;
     self.tableView.scrollEnabled = !self.mapModeOn;
     self.tableView.allowsSelection = !self.mapModeOn;
     
@@ -207,6 +210,8 @@ static const CGFloat kItemCellHeight = 70.0;
         cell = itemCell;
     } else {
         TopCell *topCell = [tableView dequeueReusableCellWithIdentifier:kTopCellIdentifier];
+        self.panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGesture:)];
+        [topCell.headerView addGestureRecognizer:self.panGestureRecognizer];
         cell = topCell;
     }
 
@@ -236,4 +241,9 @@ static const CGFloat kItemCellHeight = 70.0;
     if ( !self.mapModeOn )
         [self setMapMode:YES];
 }
+
+- (void)panGesture:(UIPanGestureRecognizer*)panRecognizer {
+    NSLog(@"%@",NSStringFromCGPoint([panRecognizer translationInView:self.tableHeaderView]));
+}
+
 @end

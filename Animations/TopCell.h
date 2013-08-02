@@ -12,5 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *thumbLabel;
 @property (weak, nonatomic) IBOutlet UILabel *textLabel;
+@property (weak, nonatomic) IBOutlet UIView *headerView;
 
 @end

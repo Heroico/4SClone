@@ -48,7 +48,7 @@
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                     <gestureRecognizers/>
                                     <connections>
-                                        <outlet property="tapGestureRecognizer" destination="vkz-Da-g58" id="X8v-R0-kS9"/>
+                                        <outlet property="tapGestureRecognizer" destination="vkz-Da-g58" id="fwO-gt-nCD"/>
                                         <outletCollection property="gestureRecognizers" destination="vkz-Da-g58" appends="YES" id="Mrr-yc-Lga"/>
                                     </connections>
                                 </view>
@@ -84,6 +84,7 @@
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    <gestureRecognizers/>
                                                     <constraints>
                                                         <constraint firstItem="Ic0-Xx-1sT" firstAttribute="trailing" secondItem="bnw-WU-CSC" secondAttribute="trailing" type="default" id="4pN-VL-4CJ"/>
                                                         <constraint firstItem="bnw-WU-CSC" firstAttribute="top" secondItem="Uhj-Tx-9Qe" secondAttribute="top" constant="-2" id="AEY-VS-lR7"/>
@@ -96,6 +97,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstItem="Uhj-Tx-9Qe" firstAttribute="top" secondItem="2wb-jt-WX9" secondAttribute="top" type="user" id="62C-KG-tel"/>
                                             <constraint firstItem="Uhj-Tx-9Qe" firstAttribute="leading" secondItem="2wb-jt-WX9" secondAttribute="leading" constant="8" type="user" id="71Z-cL-KIf"/>
@@ -107,6 +109,7 @@
                                             <constraint firstItem="hdx-c3-Lix" firstAttribute="leading" secondItem="2wb-jt-WX9" secondAttribute="leading" type="user" id="qxb-sJ-iv2"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="headerView" destination="Uhj-Tx-9Qe" id="VVM-5a-gGu"/>
                                             <outlet property="textLabel" destination="Ic0-Xx-1sT" id="7Dn-I2-f98"/>
                                             <outlet property="thumbLabel" destination="bnw-WU-CSC" id="FA7-n9-QX3"/>
                                         </connections>
@@ -258,53 +261,6 @@
             <point key="canvasLocation" x="460" y="62"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="ItemCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ItemCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="subtitleLable" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MapHelperView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MapHelperView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="mapView" candidateClass="MKMapView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="TableHeaderView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TableHeaderView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tapGestureRecognizer" candidateClass="UIGestureRecognizer"/>
-            </relationships>
-        </class>
-        <class className="TopCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TopCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="thumbLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="closeMapView:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="enableMapMode:"/>
-                <relationship kind="outlet" name="helperViewHeightConstraint" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="helperViewTopConstraint" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="mapHelperView" candidateClass="MapHelperView"/>
-                <relationship kind="outlet" name="tableBackgroundViewTop" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="tableHeaderView" candidateClass="TableHeaderView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="tableViewHeightConstraint" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="tableViewTopConstraint" candidateClass="NSLayoutConstraint"/>
-                <relationship kind="outlet" name="theButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
