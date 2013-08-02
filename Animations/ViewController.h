@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *helperViewTopConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *helperViewHeightConstraint;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableBackgroundViewTop;
+
 - (IBAction)closeMapView:(UIBarButtonItem *)sender;
 - (IBAction)enableMapMode:(id)sender;
 

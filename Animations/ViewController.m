@@ -74,8 +74,11 @@ static const CGFloat kMapModeTop = 0;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    //We must queue them or something
-    //[self updateHeaderMap:NO];
+    CGPoint point = scrollView.contentOffset;
+    if (point.y<0) {
+        self.tableBackgroundViewTop.constant = kInitialVisibleMapHeight - point.y;
+        [self.view layoutIfNeeded];
+    }
 }
 
 - (void)updateHeaderMap:(BOOL)animated {
@@ -108,24 +111,22 @@ static const CGFloat kMapModeTop = 0;
     }
     [self.view layoutIfNeeded];
 
+    self.tableView.scrollEnabled = !self.mapModeOn;
+    self.tableView.allowsSelection = !self.mapModeOn;
+    
     [UIView animateWithDuration:0.3 animations:^{
         if (self.mapModeOn) {
             CGFloat height = self.view.frame.size.height;
             self.tableViewTopConstraint.constant = height-kMapModeCellMargin;
+            self.tableBackgroundViewTop.constant = self.tableViewTopConstraint.constant;
             self.helperViewTopConstraint.constant = -kMapModeCellMargin;
         } else {
             self.tableViewTopConstraint.constant = kTableViewInitialTop;
+            self.tableBackgroundViewTop.constant = kInitialVisibleMapHeight;
             self.helperViewTopConstraint.constant = kHelpViewInitialTop;
         }
-        self.tableView.scrollEnabled = !self.mapModeOn;
         [self.view layoutIfNeeded];
         
-    } completion:^(BOOL finished) {
-        if ( finished ) {
-            if( self.mapModeOn) {
-                self.tableView.tableHeaderView = nil;
-            }
-        }
     }];
     // no animation has far better performance
     [self updateHeaderMap:YES];
@@ -198,7 +199,7 @@ static const CGFloat kMapModeTop = 0;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.backgroundColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:1];
+    cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
 }
 
 - (IBAction)closeMapView:(UIBarButtonItem *)sender {
