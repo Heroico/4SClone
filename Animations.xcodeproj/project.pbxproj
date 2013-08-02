@@ -28,6 +28,7 @@
 		38AD837A17620C3E00D10BEF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 38AD837817620C3E00D10BEF /* InfoPlist.strings */; };
 		38AD837D17620C3E00D10BEF /* AnimationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AD837C17620C3E00D10BEF /* AnimationsTests.m */; };
 		38B5805017ABF8ED0022ABD1 /* TableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B5804F17ABF8ED0022ABD1 /* TableHeaderView.m */; };
+		38B5805317AC40BB0022ABD1 /* ItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38B5805217AC40BA0022ABD1 /* ItemCell.m */; };
 		BFFDE4715346426F84972C43 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC7E7A5316A24658A368CE32 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,8 @@
 		38AD837C17620C3E00D10BEF /* AnimationsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationsTests.m; sourceTree = "<group>"; };
 		38B5804E17ABF8ED0022ABD1 /* TableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableHeaderView.h; sourceTree = "<group>"; };
 		38B5804F17ABF8ED0022ABD1 /* TableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableHeaderView.m; sourceTree = "<group>"; };
+		38B5805117AC40BA0022ABD1 /* ItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemCell.h; sourceTree = "<group>"; };
+		38B5805217AC40BA0022ABD1 /* ItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemCell.m; sourceTree = "<group>"; };
 		409FC23F672E404DA44C8821 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		CC7E7A5316A24658A368CE32 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -145,6 +148,8 @@
 				38AD836317620C3E00D10BEF /* MainStoryboard.storyboard */,
 				38AD836617620C3E00D10BEF /* ViewController.h */,
 				38AD836717620C3E00D10BEF /* ViewController.m */,
+				38B5805117AC40BA0022ABD1 /* ItemCell.h */,
+				38B5805217AC40BA0022ABD1 /* ItemCell.m */,
 				3822A22717622CAD0058DF10 /* MapHelperView.h */,
 				3822A22817622CAD0058DF10 /* MapHelperView.m */,
 				38B5804E17ABF8ED0022ABD1 /* TableHeaderView.h */,
@@ -335,6 +340,7 @@
 				3822A22617621D100058DF10 /* Item.m in Sources */,
 				3822A22917622CAD0058DF10 /* MapHelperView.m in Sources */,
 				38B5805017ABF8ED0022ABD1 /* TableHeaderView.m in Sources */,
+				38B5805317AC40BB0022ABD1 /* ItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

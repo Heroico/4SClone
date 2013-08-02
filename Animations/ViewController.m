@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Item.h"
 #import "MapHelperView.h"
+#import "ItemCell.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import <CoreLocation/CoreLocation.h>
 
@@ -21,13 +22,15 @@
 
 @implementation ViewController
 
-static NSString * const kCellIdentifier = @"CellIdentifier";
+static NSString * const kItemCellIdentifier = @"ItemCellIdentifier";
 
 static const CGFloat kInitialVisibleMapHeight = 150.0;
 static const CGFloat kHelpViewInitialTop = -100.0;
 static const CGFloat kTableViewInitialTop = 0;
 static const CGFloat kMapModeCellMargin = 20;
 static const CGFloat kMapModeTop = 0;
+
+static const CGFloat kItemCellHeight = 70.0;
 
 - (void)viewDidLoad
 {
@@ -192,15 +195,21 @@ static const CGFloat kMapModeTop = 0;
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Item * item = [self.items objectAtIndex:indexPath.row];
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
-    cell.textLabel.text = item.title;
-    cell.detailTextLabel.text = item.subtitle;
+    ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:kItemCellIdentifier];
+    cell.titleLabel.text = item.title;
+    cell.subtitleLable.text = item.subtitle;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return kItemCellHeight;
+}
+
+#pragma mark - Event handling
 
 - (IBAction)closeMapView:(UIBarButtonItem *)sender {
     [self setMapMode:NO];
