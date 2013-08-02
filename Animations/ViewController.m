@@ -95,13 +95,13 @@ static const CGFloat kMapModeTop = 0;
     [UIView animateWithDuration:0.5 animations:^{
         if (self.mapModeOn) {
             CGFloat height = self.view.frame.size.height;
-            self.tableViewTopConstraint.constant = height-20; //"20" will change soon 
+            self.tableViewTopConstraint.constant = height-170; //"20" will change soon
             self.helperViewTopConstraint.constant = 0;
         } else {
             self.tableViewTopConstraint.constant = kTableViewInitialTop;
             self.helperViewTopConstraint.constant = kHelpViewInitialTop;
         }
-
+        self.tableView.scrollEnabled = !self.mapModeOn;
         [self.view layoutIfNeeded];
 
     } completion:^(BOOL finished) {
