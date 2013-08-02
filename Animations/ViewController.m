@@ -10,6 +10,7 @@
 #import "Item.h"
 #import "MapHelperView.h"
 #import "ItemCell.h"
+#import "TopCell.h"
 #import <SVPullToRefresh/SVPullToRefresh.h>
 #import <CoreLocation/CoreLocation.h>
 
@@ -22,14 +23,17 @@
 
 @implementation ViewController
 
+static NSString * const kTopCellIdentifier = @"TopCellIdentifier";
 static NSString * const kItemCellIdentifier = @"ItemCellIdentifier";
 
 static const CGFloat kInitialVisibleMapHeight = 150.0;
 static const CGFloat kHelpViewInitialTop = -100.0;
 static const CGFloat kTableViewInitialTop = 0;
-static const CGFloat kMapModeCellMargin = 20;
+static const CGFloat kMapModeCellMargin = 22;
+static const CGFloat kBackgroundOffset  = 16;
 static const CGFloat kMapModeTop = 0;
 
+static const CGFloat kTopCellHeight  = 60.0;
 static const CGFloat kItemCellHeight = 70.0;
 
 - (void)viewDidLoad
@@ -60,7 +64,7 @@ static const CGFloat kItemCellHeight = 70.0;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager startUpdatingLocation];
     
-    self.helperViewHeightConstraint.constant = self.view.frame.size.height;
+    self.helperViewHeightConstraint.constant = self.view.frame.size.height+fabs(kHelpViewInitialTop);
     self.tableViewHeightConstraint.constant = self.view.frame.size.height;
     
     double delayInSeconds = 2.0;
@@ -79,7 +83,7 @@ static const CGFloat kItemCellHeight = 70.0;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGPoint point = scrollView.contentOffset;
     if (point.y<0) {
-        self.tableBackgroundViewTop.constant = kInitialVisibleMapHeight - point.y;
+        self.tableBackgroundViewTop.constant = kInitialVisibleMapHeight + kBackgroundOffset - point.y;
         [self.view layoutIfNeeded];
     }
 }
@@ -121,11 +125,11 @@ static const CGFloat kItemCellHeight = 70.0;
         if (self.mapModeOn) {
             CGFloat height = self.view.frame.size.height;
             self.tableViewTopConstraint.constant = height-kMapModeCellMargin;
-            self.tableBackgroundViewTop.constant = self.tableViewTopConstraint.constant;
-            self.helperViewTopConstraint.constant = -kMapModeCellMargin;
+            self.tableBackgroundViewTop.constant = self.tableViewTopConstraint.constant+kBackgroundOffset;
+            self.helperViewTopConstraint.constant = 0;
         } else {
             self.tableViewTopConstraint.constant = kTableViewInitialTop;
-            self.tableBackgroundViewTop.constant = kInitialVisibleMapHeight;
+            self.tableBackgroundViewTop.constant = kInitialVisibleMapHeight+kBackgroundOffset;
             self.helperViewTopConstraint.constant = kHelpViewInitialTop;
         }
         [self.view layoutIfNeeded];
@@ -195,18 +199,31 @@ static const CGFloat kItemCellHeight = 70.0;
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     Item * item = [self.items objectAtIndex:indexPath.row];
-    ItemCell *cell = [tableView dequeueReusableCellWithIdentifier:kItemCellIdentifier];
-    cell.titleLabel.text = item.title;
-    cell.subtitleLable.text = item.subtitle;
+    UITableViewCell *cell = nil;
+    if (indexPath.row) {
+        ItemCell *itemCell = [tableView dequeueReusableCellWithIdentifier:kItemCellIdentifier];
+        itemCell.titleLabel.text = item.title;
+        itemCell.subtitleLable.text = item.subtitle;
+        cell = itemCell;
+    } else {
+        TopCell *topCell = [tableView dequeueReusableCellWithIdentifier:kTopCellIdentifier];
+        cell = topCell;
+    }
+
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    cell.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1];
+    cell.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    view.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.5];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return kItemCellHeight;
+    CGFloat height = indexPath.row == 0 ? kTopCellHeight : kItemCellHeight;
+    return height;
 }
 
 #pragma mark - Event handling
