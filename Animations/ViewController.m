@@ -39,7 +39,7 @@ static const CGFloat kTopCellHeight  = 60.0;
 static const CGFloat kItemCellHeight = 70.0;
 
 static const CGFloat kMapModePanThreshold = 40.0;
-static const CGFloat kMapModePanMultiplier = 15.0;
+static const CGFloat kMapModePanMultiplier = 6.0;
 
 - (void)viewDidLoad
 {
@@ -100,8 +100,30 @@ static const CGFloat kMapModePanMultiplier = 15.0;
 }
 
 - (void)setMapMode:(BOOL)mapMode {
+    [self setMapMode:mapMode withTraslate:0];
+}
+
+- (void)setMapMode:(BOOL)mapMode withTraslate:(CGFloat)traslate {
+    
+    [self toggleFlagsForMapMode:mapMode];
+    // First remove/add header view from table, then animate map movement
+    if (self.mapModeOn) {
+        [self setViewsForMapMode];
+    } else {
+        [self setViewsForInitialModeWithTraslate:traslate];
+    }
+
+    // no animation has far better performance
+    [self updateHeaderMap:YES];
+}
+
+#pragma mark - private methods
+
+- (void)toggleFlagsForMapMode:(BOOL)mapMode {
     self.mapModeOn = mapMode;
     self.panGestureRecognizer.enabled = self.mapModeOn;
+    self.tableView.scrollEnabled = !self.mapModeOn;
+    self.tableView.allowsSelection = !self.mapModeOn;
     self.mapHelperView.mapView.userInteractionEnabled = self.mapModeOn;
     self.mapHelperView.mapView.zoomEnabled = self.mapModeOn;
     self.mapHelperView.mapView.scrollEnabled = self.mapModeOn;
@@ -110,43 +132,39 @@ static const CGFloat kMapModePanMultiplier = 15.0;
     self.theButton.hidden = self.mapModeOn;
     
     self.navigationItem.rightBarButtonItem.enabled = self.mapModeOn;
+}
 
-    // First remove/add header view from table, then animate map movement
-    if (self.mapModeOn) {
-        [self.locationManager stopUpdatingLocation];
-        self.tableView.tableHeaderView = nil;
-        self.tableViewTopConstraint.constant = kInitialVisibleMapHeight;
-    } else {
-        [self.locationManager startUpdatingLocation];
-        CGFloat height = self.view.frame.size.height;
-        self.tableView.tableHeaderView = (UIView *)self.tableHeaderView;
-        self.tableViewTopConstraint.constant = height-kInitialVisibleMapHeight-kMapModeCellMargin;
-        self.tableBackgroundViewTop.constant = self.tableViewTopConstraint.constant+kInitialVisibleMapHeight+kBackgroundOffset;
-    }
+- (void)setViewsForInitialModeWithTraslate:(CGFloat)traslate {
+    [self.locationManager startUpdatingLocation];
+    CGFloat height = self.view.frame.size.height;
+    self.tableView.tableHeaderView = (UIView *)self.tableHeaderView;
+    self.tableViewTopConstraint.constant = height-kInitialVisibleMapHeight-kMapModeCellMargin-traslate;
+    self.tableBackgroundViewTop.constant = self.tableViewTopConstraint.constant+kInitialVisibleMapHeight+kBackgroundOffset;
     [self.view layoutIfNeeded];
-
-    self.tableView.scrollEnabled = !self.mapModeOn;
-    self.tableView.allowsSelection = !self.mapModeOn;
     
     [UIView animateWithDuration:0.3 animations:^{
-        if (self.mapModeOn) {
-            CGFloat height = self.view.frame.size.height;
-            self.tableViewTopConstraint.constant = height-kMapModeCellMargin;
-            self.tableBackgroundViewTop.constant = self.tableViewTopConstraint.constant+kBackgroundOffset;
-            self.helperViewTopConstraint.constant = 0;
-        } else {
-            self.tableViewTopConstraint.constant = kTableViewInitialTop;
-            self.tableBackgroundViewTop.constant = kInitialVisibleMapHeight+kBackgroundOffset;
-            self.helperViewTopConstraint.constant = kHelpViewInitialTop;
-        }
+        self.tableViewTopConstraint.constant = kTableViewInitialTop;
+        self.tableBackgroundViewTop.constant = kInitialVisibleMapHeight+kBackgroundOffset;
+        self.helperViewTopConstraint.constant = kHelpViewInitialTop;
+        [self.view layoutIfNeeded];
+    }];
+}
+
+- (void)setViewsForMapMode {
+    [self.locationManager stopUpdatingLocation];
+    self.tableView.tableHeaderView = nil;
+    self.tableViewTopConstraint.constant = kInitialVisibleMapHeight;
+    [self.view layoutIfNeeded];
+    [UIView animateWithDuration:0.3 animations:^{
+        CGFloat height = self.view.frame.size.height;
+        self.tableViewTopConstraint.constant = height-kMapModeCellMargin;
+        self.tableBackgroundViewTop.constant = self.tableViewTopConstraint.constant+kBackgroundOffset;
+        self.helperViewTopConstraint.constant = 0;
+
         [self.view layoutIfNeeded];
         
     }];
-    // no animation has far better performance
-    [self updateHeaderMap:YES];
 }
-
-#pragma mark - private methods
 
 - (void) infiniteScrolling {
 
@@ -256,13 +274,12 @@ static const CGFloat kMapModePanMultiplier = 15.0;
         return;
     }
     
+    CGFloat traslate = round(kMapModePanMultiplier*sqrt(fabs(pan.y)));
     NSLog(@"%@",NSStringFromCGPoint(pan));
     if (panRecognizer.state == UIGestureRecognizerStateBegan || panRecognizer.state == UIGestureRecognizerStateChanged) {
         if (panRecognizer.state == UIGestureRecognizerStateBegan) {
             NSLog(@"Pan began");
         }
-        
-        CGFloat traslate = round(kMapModePanMultiplier*sqrt(fabs(pan.y)));
         CGFloat height = self.view.frame.size.height;
         self.tableViewTopConstraint.constant = height-kMapModeCellMargin - traslate;
         self.tableBackgroundViewTop.constant = self.tableViewTopConstraint.constant+kBackgroundOffset;
@@ -270,11 +287,10 @@ static const CGFloat kMapModePanMultiplier = 15.0;
         [self.view layoutIfNeeded];
     } else {
 
-
-        NSLog(@"Pan end?");
+        NSLog(@"Pan end");
 
         if (pan.y < -kMapModePanThreshold) {
-            [self setMapMode:NO];
+            [self setMapMode:NO withTraslate:traslate];
         } else {
             [UIView animateWithDuration:0.3 animations:^{
                 CGFloat height = self.view.frame.size.height;
