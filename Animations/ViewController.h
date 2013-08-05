@@ -8,15 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@class HeaderView;
+@class MapHelperView;
+@class TableHeaderView;
 
 @interface ViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 
-@property(nonatomic,strong) IBOutlet UITableView * tableView;
-@property (weak, nonatomic) IBOutlet HeaderView *headerView;
+@property (strong, nonatomic) IBOutlet TableHeaderView *tableHeaderView;
+@property (weak, nonatomic) IBOutlet UITableView * tableView;
+@property (weak, nonatomic) IBOutlet MapHelperView *mapHelperView;
 @property (weak, nonatomic) IBOutlet UIButton *theButton;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewTopConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *headerViewHeightConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableViewHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *helperViewTopConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *helperViewHeightConstraint;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableBackgroundViewTop;
 
 - (IBAction)closeMapView:(UIBarButtonItem *)sender;
 - (IBAction)enableMapMode:(id)sender;

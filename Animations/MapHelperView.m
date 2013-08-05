@@ -6,14 +6,14 @@
 //  Copyright (c) 2013 Alvaro Barbeira. All rights reserved.
 //
 
-#import "HeaderView.h"
+#import "MapHelperView.h"
 
-@interface HeaderView()
+@interface MapHelperView()
 @property (nonatomic,strong) CLLocation * location;
 @property (nonatomic,assign) CGPoint offset;
 @end
 
-@implementation HeaderView
+@implementation MapHelperView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -45,7 +45,7 @@
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(self.location.coordinate, 500*viewFraction, 500);
     region.center.latitude = region.center.latitude + region.span.latitudeDelta*(fraction - 0.5);
     [self.mapView setRegion:region animated:animated];
-    NSLog(@"location (%f,%f)", region.center.latitude,region.center.longitude);
+    //NSLog(@"location (%f,%f)", region.center.latitude,region.center.longitude);
 }
 
 #pragma mark - map delegate
