@@ -38,6 +38,9 @@ static const CGFloat kMapModeTop = 0;
 static const CGFloat kTopCellHeight  = 60.0;
 static const CGFloat kItemCellHeight = 70.0;
 
+static const CGFloat kMapModePanThreshold = 40.0;
+static const CGFloat kMapModePanMultiplier = 15.0;
+
 - (void)viewDidLoad
 {
     self.items = [NSMutableArray array];
@@ -84,7 +87,7 @@ static const CGFloat kItemCellHeight = 70.0;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGPoint point = scrollView.contentOffset;
-    if (point.y<0) {
+    if (point.y <= 0) {
         self.tableBackgroundViewTop.constant = kInitialVisibleMapHeight + kBackgroundOffset - point.y;
         [self.view layoutIfNeeded];
     }
@@ -98,6 +101,7 @@ static const CGFloat kItemCellHeight = 70.0;
 
 - (void)setMapMode:(BOOL)mapMode {
     self.mapModeOn = mapMode;
+    self.panGestureRecognizer.enabled = self.mapModeOn;
     self.mapHelperView.mapView.userInteractionEnabled = self.mapModeOn;
     self.mapHelperView.mapView.zoomEnabled = self.mapModeOn;
     self.mapHelperView.mapView.scrollEnabled = self.mapModeOn;
@@ -117,10 +121,10 @@ static const CGFloat kItemCellHeight = 70.0;
         CGFloat height = self.view.frame.size.height;
         self.tableView.tableHeaderView = (UIView *)self.tableHeaderView;
         self.tableViewTopConstraint.constant = height-kInitialVisibleMapHeight-kMapModeCellMargin;
+        self.tableBackgroundViewTop.constant = self.tableViewTopConstraint.constant+kInitialVisibleMapHeight+kBackgroundOffset;
     }
     [self.view layoutIfNeeded];
 
-    self.panGestureRecognizer.enabled = self.mapModeOn;
     self.tableView.scrollEnabled = !self.mapModeOn;
     self.tableView.allowsSelection = !self.mapModeOn;
     
@@ -243,7 +247,44 @@ static const CGFloat kItemCellHeight = 70.0;
 }
 
 - (void)panGesture:(UIPanGestureRecognizer*)panRecognizer {
-    NSLog(@"%@",NSStringFromCGPoint([panRecognizer translationInView:self.tableHeaderView]));
+    if (!self.mapModeOn) {
+        return;
+    }
+    
+    CGPoint pan = [panRecognizer translationInView:self.tableHeaderView];
+    if ( pan.y >0 ) {
+        return;
+    }
+    
+    NSLog(@"%@",NSStringFromCGPoint(pan));
+    if (panRecognizer.state == UIGestureRecognizerStateBegan || panRecognizer.state == UIGestureRecognizerStateChanged) {
+        if (panRecognizer.state == UIGestureRecognizerStateBegan) {
+            NSLog(@"Pan began");
+        }
+        
+        CGFloat traslate = round(kMapModePanMultiplier*sqrt(fabs(pan.y)));
+        CGFloat height = self.view.frame.size.height;
+        self.tableViewTopConstraint.constant = height-kMapModeCellMargin - traslate;
+        self.tableBackgroundViewTop.constant = self.tableViewTopConstraint.constant+kBackgroundOffset;
+        self.helperViewTopConstraint.constant = - traslate/2;
+        [self.view layoutIfNeeded];
+    } else {
+
+
+        NSLog(@"Pan end?");
+
+        if (pan.y < -kMapModePanThreshold) {
+            [self setMapMode:NO];
+        } else {
+            [UIView animateWithDuration:0.3 animations:^{
+                CGFloat height = self.view.frame.size.height;
+                self.tableViewTopConstraint.constant = height-kMapModeCellMargin;
+                self.tableBackgroundViewTop.constant = self.tableViewTopConstraint.constant+kBackgroundOffset;
+                self.helperViewTopConstraint.constant = 0;
+                [self.view layoutIfNeeded];
+            }];
+        }
+    }
 }
 
 @end
